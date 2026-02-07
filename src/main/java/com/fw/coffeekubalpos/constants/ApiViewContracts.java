@@ -1,5 +1,6 @@
 package com.fw.coffeekubalpos.constants;
 
+@SuppressWarnings("ALL")
 public interface ApiViewContracts {
 
   /**
