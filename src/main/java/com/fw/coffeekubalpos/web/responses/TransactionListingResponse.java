@@ -5,6 +5,7 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
+@SuppressWarnings("unused")
 @Getter
 @Setter
 public class TransactionListingResponse {
