@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--suppress ALL -->
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8"/>
@@ -7,7 +8,6 @@
   <script type="text/javascript" th:src="@{/js/jquery-3.6.1.js}"></script>
   <title>Coffee Kubal</title>
   <style>
-
     * {
       padding: 0px;
       margin: 0px;
@@ -74,45 +74,30 @@
       border-radius: 10px;
 
  }
-  </
-          style>
-</head>
-  <
-          body>
+  </style>
+  </head>
+  <body>
   <header>
-      <a th:href="@{/order/list}">Orders</a>
-    &nbsp;|&nbsp;
-      <a th:href="@{/menu/list}">Menus
-      </a>&nbsp;|&nbsp;
-      <a th:href="@{/transaction/list}">
-        Transactions</a>&nbsp;|&nbsp;
-      <a href="" onclick="
-logout
-eturn false;"
-      >Logout</a>
+      <a th:href="@{/order/list}">Orders</a>&nbsp;|&nbsp;
+      <a th:href="@{/menu/list}">Menus</a>&nbsp;|&nbsp;
+      <a th:href="@{/transaction/list}">Transactions</a>&nbsp;|&nbsp;
+      <a href="" onclick="logout return false;">Logout</a>
     </header>
     <main>
       <div class="
     form-class">
         <h2>Update Menu</h2><br><br>
-        <p id="id"
-           th:text=
-                   "
-      ${menu.getId()}" style="display:none;"></p>
+        <p id="id" th:text="${menu.getId()}" style="display:none;"></p>
         <p>
           Menu Name:
-          <input class="
-      field-class" id="
-      name" type="text" th:value="${menu.getName()}" />
-        </p><p>
-        Price:
-          <
-                  input
-                  class="field-class" id="price" type="number" th:value="${menu.getPrice()}" />
+          <input class="field-class" id="name" type="text" th:value="${menu.getName()}" />
         </p>
         <p>
-          <
-                  button class="submit-class" th:attr="onclick=|updateMenu()|">Update Menu</button>
+        Price:
+          <input class="field-class" id="price" type="number" th:value="${menu.getPrice()}" />
+        </p>
+        <p>
+          <button class="submit-class" th:attr="onclick=|updateMenu()|">Update Menu</button>
         </p>
       </div>
     </main>
