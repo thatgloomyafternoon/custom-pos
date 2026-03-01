@@ -1,14 +1,25 @@
 package com.fw.coffeekubalpos.services.dto;
 
 import java.util.UUID;
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
 public class MenuDropdownDTO {
 
   private UUID id;
   private String name;
 
+  public UUID getId() {
+    return id;
+  }
+
+  public void setId(UUID id) {
+    this.id = id;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
 }
