@@ -12,63 +12,78 @@ import com.fw.coffeekubalpos.web.responses.MenuUpdateViewResponse;
 import com.fw.coffeekubalpos.web.responses.OrderDetailsInfoResponse;
 import com.fw.coffeekubalpos.web.responses.OrderDetailsMenuOrderedResponse;
 import com.fw.coffeekubalpos.web.responses.OrderListingResponse;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
+import org.springframework.stereotype.Component;
 
-@Mapper(componentModel = "spring")
-public abstract class MapperUtil {
+@Component
+public class MapperUtil {
 
-  @Mapping(source = "order.id", target = "orderId")
-  @Mapping(source = "order.customerName", target = "customerName")
-  @Mapping(source = "order.createdDate", target = "createdDate")
-  @Mapping(target = "displayedCreatedDate", ignore = true)
-  public abstract OrderListingResponse mapOrderToOrderListingResponse(Order order);
+  public OrderListingResponse mapOrderToOrderListingResponse(Order order) {
+    OrderListingResponse retval = new OrderListingResponse();
+    retval.setOrderId(order.getId());
+    retval.setCustomerName(order.getCustomerName());
+    retval.setCreatedDate(order.getCreatedDate());
+    return retval;
+  }
 
-  @Mapping(source = "om.id", target = "orderMenuId")
-  @Mapping(source = "om.menu.name", target = "menuName")
-  @Mapping(source = "om.menu.price", target = "price")
-  @Mapping(source = "om.quantity", target = "quantity")
-  @Mapping(source = "om.notes", target = "notes")
-  @Mapping(target = "priceString", ignore = true)
-  public abstract OrderDetailsMenuOrderedResponse mapOrderMenuToOrderDetailsMenuOrderedResponse(OrderMenu om);
+  public OrderDetailsMenuOrderedResponse mapOrderMenuToOrderDetailsMenuOrderedResponse(OrderMenu om) {
+    OrderDetailsMenuOrderedResponse retval = new OrderDetailsMenuOrderedResponse();
+    retval.setOrderMenuId(om.getId());
+    retval.setMenuName(om.getMenu().getName());
+    retval.setPrice(om.getMenu().getPrice());
+    retval.setQuantity(om.getQuantity());
+    retval.setNotes(om.getNotes());
+    return retval;
+  }
 
-  @Mapping(source = "o.id", target = "orderId")
-  @Mapping(source = "o.customerName", target = "customerName")
-  @Mapping(target = "createdDate", ignore = true)
-  public abstract OrderDetailsInfoResponse mapOrderToOrderDetailsInfoResponse(Order o);
+  public OrderDetailsInfoResponse mapOrderToOrderDetailsInfoResponse(Order o) {
+    OrderDetailsInfoResponse retval = new OrderDetailsInfoResponse();
+    retval.setOrderId(o.getId());
+    retval.setCustomerName(o.getCustomerName());
+    return retval;
+  }
 
-  @Mapping(source = "m.id", target = "id")
-  @Mapping(source = "m.name", target = "name")
-  public abstract MenuDropdownDTO mapMenuToMenuDropdownDTO(Menu m);
+  public MenuDropdownDTO mapMenuToMenuDropdownDTO(Menu m) {
+    MenuDropdownDTO retval = new MenuDropdownDTO();
+    retval.setId(m.getId());
+    retval.setName(m.getName());
+    return retval;
+  }
 
-  @Mapping(source = "odmor.menuName", target = "menuName")
-  @Mapping(source = "odmor.price", target = "price")
-  @Mapping(source = "odmor.priceString", target = "priceString")
-  @Mapping(source = "odmor.quantity", target = "quantity")
-  @Mapping(source = "odmor.notes", target = "notes")
-  public abstract ReceiptMenuJsonDTO mapOrderDetailsMenuOrderedResponseToReceiptMenuJsonDTO(OrderDetailsMenuOrderedResponse odmor);
+  public ReceiptMenuJsonDTO mapOrderDetailsMenuOrderedResponseToReceiptMenuJsonDTO(OrderDetailsMenuOrderedResponse odmor) {
+    ReceiptMenuJsonDTO retval = new ReceiptMenuJsonDTO();
+    retval.setMenuName(odmor.getMenuName());
+    retval.setPrice(odmor.getPrice());
+    retval.setPriceString(odmor.getPriceString());
+    retval.setQuantity(odmor.getQuantity());
+    retval.setNotes(odmor.getNotes());
+    return retval;
+  }
 
-  @Mapping(source = "t.id", target = "transactionId")
-  @Mapping(source = "t.customerName", target = "customerName")
-  @Mapping(source = "t.createdDate", target = "transactionDate")
-  @Mapping(source = "t.totalPrice", target = "totalPrice")
-  @Mapping(target = "displayedTransactionDate", ignore = true)
-  @Mapping(target = "totalPriceString", ignore = true)
-  public abstract TransactionListingDTO mapTransactionToTransactionListingDTO(Transaction t);
+  public TransactionListingDTO mapTransactionToTransactionListingDTO(Transaction t) {
+    TransactionListingDTO retval = new TransactionListingDTO();
+    retval.setTransactionId(t.getId());
+    retval.setCustomerName(t.getCustomerName());
+    retval.setTransactionDate(t.getCreatedDate());
+    retval.setTotalPrice(t.getTotalPrice());
+    return retval;
+  }
 
-  @Mapping(source = "m.id", target = "menuId")
-  @Mapping(source = "m.createdDate", target = "createdDate")
-  @Mapping(source = "m.lastModifiedDate", target = "lastModifiedDate")
-  @Mapping(source = "m.name", target = "menuName")
-  @Mapping(source = "m.price", target = "price")
-  @Mapping(target = "displayedCreatedDate", ignore = true)
-  @Mapping(target = "displayedLastModifiedDate", ignore = true)
-  @Mapping(target = "priceString", ignore = true)
-  public abstract MenuListingResponse mapMenuToMenuListingResponse(Menu m);
+  public MenuListingResponse mapMenuToMenuListingResponse(Menu m) {
+    MenuListingResponse retval = new MenuListingResponse();
+    retval.setMenuId(m.getId());
+    retval.setCreatedDate(m.getCreatedDate());
+    retval.setLastModifiedDate(m.getLastModifiedDate());
+    retval.setMenuName(m.getName());
+    retval.setPrice(m.getPrice());
+    return retval;
+  }
 
-  @Mapping(source = "m.id", target = "id")
-  @Mapping(source = "m.name", target = "name")
-  @Mapping(source = "m.price", target = "price")
-  public abstract MenuUpdateViewResponse mapMenuToMenuUpdateViewResponse(Menu m);
+  public MenuUpdateViewResponse mapMenuToMenuUpdateViewResponse(Menu m) {
+    MenuUpdateViewResponse retval = new MenuUpdateViewResponse();
+    retval.setId(m.getId());
+    retval.setName(m.getName());
+    retval.setPrice(m.getPrice());
+    return retval;
+  }
 
 }
