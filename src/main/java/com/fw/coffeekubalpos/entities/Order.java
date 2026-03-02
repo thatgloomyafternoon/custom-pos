@@ -12,15 +12,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 @Table(name = "orderr")
 @Entity
-@Getter
-@Setter
 public class Order {
 
   @Id
@@ -50,4 +46,43 @@ public class Order {
     this.id = id;
   }
 
+  public UUID getId() {
+    return id;
+  }
+
+  public void setId(UUID id) {
+    this.id = id;
+  }
+
+  public ZonedDateTime getCreatedDate() {
+    return createdDate;
+  }
+
+  public void setCreatedDate(ZonedDateTime createdDate) {
+    this.createdDate = createdDate;
+  }
+
+  public ZonedDateTime getLastModifiedDate() {
+    return lastModifiedDate;
+  }
+
+  public void setLastModifiedDate(ZonedDateTime lastModifiedDate) {
+    this.lastModifiedDate = lastModifiedDate;
+  }
+
+  public @NotNull @NotEmpty String getCustomerName() {
+    return customerName;
+  }
+
+  public void setCustomerName(@NotNull @NotEmpty String customerName) {
+    this.customerName = customerName;
+  }
+
+  public Set<OrderMenu> getOrderMenu() {
+    return orderMenu;
+  }
+
+  public void setOrderMenu(Set<OrderMenu> orderMenu) {
+    this.orderMenu = orderMenu;
+  }
 }
