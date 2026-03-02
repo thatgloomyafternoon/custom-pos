@@ -1,11 +1,7 @@
 package com.fw.coffeekubalpos.web.requests;
 
 import javax.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
 public class MenuUpdateRequest {
 
   @NotNull
@@ -15,4 +11,27 @@ public class MenuUpdateRequest {
   @NotNull
   private Integer price;
 
+  public @NotNull String getId() {
+    return id;
+  }
+
+  public void setId(@NotNull String id) {
+    this.id = id;
+  }
+
+  public @NotNull String getName() {
+    return name;
+  }
+
+  public void setName(@NotNull String name) {
+    this.name = name;
+  }
+
+  public @NotNull Integer getPrice() {
+    return price;
+  }
+
+  public void setPrice(@NotNull Integer price) {
+    this.price = price;
+  }
 }
