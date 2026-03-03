@@ -2,11 +2,7 @@ package com.fw.coffeekubalpos.web.responses;
 
 import java.time.ZonedDateTime;
 import java.util.UUID;
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
 public class OrderListingResponse {
 
   private UUID orderId;
@@ -14,4 +10,35 @@ public class OrderListingResponse {
   private String displayedCreatedDate;
   private ZonedDateTime createdDate;
 
+  public UUID getOrderId() {
+    return orderId;
+  }
+
+  public void setOrderId(UUID orderId) {
+    this.orderId = orderId;
+  }
+
+  public String getCustomerName() {
+    return customerName;
+  }
+
+  public void setCustomerName(String customerName) {
+    this.customerName = customerName;
+  }
+
+  public String getDisplayedCreatedDate() {
+    return displayedCreatedDate;
+  }
+
+  public void setDisplayedCreatedDate(String displayedCreatedDate) {
+    this.displayedCreatedDate = displayedCreatedDate;
+  }
+
+  public ZonedDateTime getCreatedDate() {
+    return createdDate;
+  }
+
+  public void setCreatedDate(ZonedDateTime createdDate) {
+    this.createdDate = createdDate;
+  }
 }
