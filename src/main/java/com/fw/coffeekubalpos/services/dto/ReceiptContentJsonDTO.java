@@ -1,11 +1,7 @@
 package com.fw.coffeekubalpos.services.dto;
 
 import java.util.List;
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
 public class ReceiptContentJsonDTO {
 
   private String cashierName;
@@ -15,4 +11,51 @@ public class ReceiptContentJsonDTO {
   private List<ReceiptMenuJsonDTO> menuOrdered;
   private String totalPriceString;
 
+  public String getCashierName() {
+    return cashierName;
+  }
+
+  public void setCashierName(String cashierName) {
+    this.cashierName = cashierName;
+  }
+
+  public String getCustomerName() {
+    return customerName;
+  }
+
+  public void setCustomerName(String customerName) {
+    this.customerName = customerName;
+  }
+
+  public String getOrderedDate() {
+    return orderedDate;
+  }
+
+  public void setOrderedDate(String orderedDate) {
+    this.orderedDate = orderedDate;
+  }
+
+  public String getTransactionDate() {
+    return transactionDate;
+  }
+
+  public void setTransactionDate(String transactionDate) {
+    this.transactionDate = transactionDate;
+  }
+
+  public List<ReceiptMenuJsonDTO> getMenuOrdered() {
+    return menuOrdered;
+  }
+
+  public void setMenuOrdered(List<ReceiptMenuJsonDTO> menuOrdered) {
+    this.menuOrdered = menuOrdered;
+  }
+
+  public String getTotalPriceString() {
+    return totalPriceString;
+  }
+
+  public void setTotalPriceString(String totalPriceString) {
+    this.totalPriceString = totalPriceString;
+  }
 }
