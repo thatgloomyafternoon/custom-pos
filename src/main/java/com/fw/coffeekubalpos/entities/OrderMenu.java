@@ -10,13 +10,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.Setter;
 
 @Table(name = "order_menu")
 @Entity
-@Getter
-@Setter
 public class OrderMenu {
 
   @Id
@@ -40,4 +36,43 @@ public class OrderMenu {
   @Column(name = "notes")
   private String notes;
 
+  public UUID getId() {
+    return id;
+  }
+
+  public void setId(UUID id) {
+    this.id = id;
+  }
+
+  public Order getOrder() {
+    return order;
+  }
+
+  public void setOrder(Order order) {
+    this.order = order;
+  }
+
+  public Menu getMenu() {
+    return menu;
+  }
+
+  public void setMenu(Menu menu) {
+    this.menu = menu;
+  }
+
+  public @Min(value = 1) @NotNull Integer getQuantity() {
+    return quantity;
+  }
+
+  public void setQuantity(@Min(value = 1) @NotNull Integer quantity) {
+    this.quantity = quantity;
+  }
+
+  public String getNotes() {
+    return notes;
+  }
+
+  public void setNotes(String notes) {
+    this.notes = notes;
+  }
 }
