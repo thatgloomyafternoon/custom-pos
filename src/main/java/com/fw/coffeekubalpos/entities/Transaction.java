@@ -11,13 +11,9 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import lombok.Getter;
-import lombok.Setter;
 
 @Table(name = "transaction")
 @Entity
-@Getter
-@Setter
 public class Transaction {
 
   @Id
@@ -47,4 +43,51 @@ public class Transaction {
   @NotEmpty
   private String receiptContentJson;
 
+  public UUID getId() {
+    return id;
+  }
+
+  public void setId(UUID id) {
+    this.id = id;
+  }
+
+  public ZonedDateTime getCreatedDate() {
+    return createdDate;
+  }
+
+  public void setCreatedDate(ZonedDateTime createdDate) {
+    this.createdDate = createdDate;
+  }
+
+  public ZonedDateTime getLastModifiedDate() {
+    return lastModifiedDate;
+  }
+
+  public void setLastModifiedDate(ZonedDateTime lastModifiedDate) {
+    this.lastModifiedDate = lastModifiedDate;
+  }
+
+  public @NotNull @NotEmpty String getCustomerName() {
+    return customerName;
+  }
+
+  public void setCustomerName(@NotNull @NotEmpty String customerName) {
+    this.customerName = customerName;
+  }
+
+  public @NotNull Integer getTotalPrice() {
+    return totalPrice;
+  }
+
+  public void setTotalPrice(@NotNull Integer totalPrice) {
+    this.totalPrice = totalPrice;
+  }
+
+  public @NotNull @NotEmpty String getReceiptContentJson() {
+    return receiptContentJson;
+  }
+
+  public void setReceiptContentJson(@NotNull @NotEmpty String receiptContentJson) {
+    this.receiptContentJson = receiptContentJson;
+  }
 }
