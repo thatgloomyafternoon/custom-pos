@@ -1,7 +1,6 @@
 package com.fw.coffeekubalpos.services;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fw.coffeekubalpos.constants.PropertyConstants;
 import com.fw.coffeekubalpos.entities.Transaction;
@@ -29,6 +28,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+@SuppressWarnings("DanglingJavadoc")
 @Service
 public class TransactionServiceImpl implements TransactionService {
 
@@ -60,9 +60,9 @@ public class TransactionServiceImpl implements TransactionService {
       .format(DateTimeFormatter.ofPattern(PropertyConstants.DATE_TIME_PATTERN));
     /** */
     OrderDetailsResponse odr = orderService.findOrderDetailsByOrderId(orderId);
-    int totalPrice = 0;
+    int totalPrice;
     /** checking non-null and non-empty order-menu under order */
-    if(odr.getMenuOrdered() == null || odr.getMenuOrdered().size() <= 0) {
+    if(odr.getMenuOrdered() == null || odr.getMenuOrdered().isEmpty()) {
       throw new IllegalArgumentException("ERROR");
     }
     /** create receipt content */
@@ -88,7 +88,7 @@ public class TransactionServiceImpl implements TransactionService {
     newTransaction.setCreatedDate(transactionDate);
     newTransaction.setCustomerName(odr.getInfo().getCustomerName());
     newTransaction.setTotalPrice(totalPrice);
-    String receiptContentJson = null;
+    String receiptContentJson;
     receiptContentJson = objMapper.writeValueAsString(receiptContentJsonDTO);
     newTransaction.setReceiptContentJson(receiptContentJson);
     transactionRepository.save(newTransaction);
@@ -105,7 +105,7 @@ public class TransactionServiceImpl implements TransactionService {
       .map(mapperUtil::mapTransactionToTransactionListingDTO)
       .sorted(Comparator.comparing(TransactionListingDTO::getTransactionDate).reversed())
       .collect(Collectors.toList())
-      .subList(0, transactions.size() > 20 ? 20 : transactions.size());
+      .subList(0, Math.min(transactions.size(), 20));
     transactionListings.forEach(tl -> tl.setTotalPriceString(currencyStringFormatUtil.format(tl.getTotalPrice())));
     /** convert time zone */
     transactionListings.forEach(tl -> tl.setDisplayedTransactionDate(tl.getTransactionDate().plusHours(7).format(DateTimeFormatter.ofPattern(PropertyConstants.DATE_TIME_PATTERN))));
@@ -151,9 +151,9 @@ public class TransactionServiceImpl implements TransactionService {
   }
 
   @Override
-  public ReceiptContentJsonDTO getReceiptContentByTransactionId(UUID transactionId) throws JsonMappingException, JsonProcessingException {
+  public ReceiptContentJsonDTO getReceiptContentByTransactionId(UUID transactionId) throws JsonProcessingException {
     Optional<Transaction> optTransaction = transactionRepository.findById(transactionId);
-    if(!optTransaction.isPresent()) {
+    if(optTransaction.isEmpty()) {
       throw new IllegalArgumentException("Transaction not found");
     }
     Transaction transaction = optTransaction.get();
